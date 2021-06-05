@@ -6,6 +6,8 @@ import { RouterModule } from '@angular/router';
 import { RoutesListComponent } from './components/routes-list/routes-list.component';
 import { SIDENAV_LINKS } from './tokens/sidenav-links.token';
 import { sidenavLinksConfig } from './config/sidenav-links.config';
+import { MatTableModule } from '@angular/material/table';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { sidenavLinksConfig } from './config/sidenav-links.config';
   ],
   imports: [
     CommonModule,
-    RouterModule
+    RouterModule,
+    MatTableModule,
+    HttpClientModule,
   ],
   providers: [
     {

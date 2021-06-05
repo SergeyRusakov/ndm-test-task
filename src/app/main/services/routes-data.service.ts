@@ -33,8 +33,8 @@ export class RoutesDataService implements DataService<Route, void> {
     this.httpService
       .fetch()
       .pipe(
-        finalize(() => this._loading$.next(true))
+        finalize(() => this._loading$.next(false))
       )
-      .subscribe();
+      .subscribe(response => this.routes$.next(response));
   }
 }
