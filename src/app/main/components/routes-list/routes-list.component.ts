@@ -33,7 +33,7 @@ export class RoutesListComponent implements OnInit {
     }
   ];
   public displayedColumns: (keyof Route)[];
-  private sortedBy?: RoutesListSoringOption;
+  public sortedBy?: RoutesListSoringOption;
 
   constructor(
     private routesDataService: RoutesDataService

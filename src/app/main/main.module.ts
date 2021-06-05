@@ -8,6 +8,7 @@ import { SIDENAV_LINKS } from './tokens/sidenav-links.token';
 import { sidenavLinksConfig } from './config/sidenav-links.config';
 import { MatTableModule } from '@angular/material/table';
 import { HttpClientModule } from '@angular/common/http';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { HttpClientModule } from '@angular/common/http';
     RouterModule,
     MatTableModule,
     HttpClientModule,
+    MatIconModule
   ],
   providers: [
     {

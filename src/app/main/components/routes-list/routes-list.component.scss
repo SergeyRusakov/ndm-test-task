@@ -10,4 +10,13 @@
     height: 70%;
     overflow-y: auto;
   }
+
+  &__header-cell-content {
+    height: 100%;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    user-select: none;
+  }
+
 }
