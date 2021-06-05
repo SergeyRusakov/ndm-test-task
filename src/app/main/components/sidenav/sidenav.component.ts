@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
+import { SIDENAV_LINKS } from '../tokens/sidenav-links.token';
+import { SidenavLink } from '../../types/sidenav-link.type';
 
 @Component({
   selector: 'app-sidenav',
@@ -7,7 +9,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidenavComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    @Inject(SIDENAV_LINKS)
+    public sidenavLinks: SidenavLink[],
+  ) { }
 
   public ngOnInit(): void {
   }

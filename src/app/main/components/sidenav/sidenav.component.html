@@ -1,10 +1,11 @@
 <div class="sidenav">
   <div class="sidenav__buttons">
-    <button class="sidenav__button">
-      Маршруты
-    </button>
-    <button class="sidenav__button sidenav__button_active">
-      Новый маршрут
-    </button>
+    <ng-container *ngFor="let link of sidenavLinks">
+      <button class="sidenav__button"
+              routerLinkActive="sidenav__button_active"
+              [routerLink]="[link.routerLink]">
+        {{link.name}}
+      </button>
+    </ng-container>
   </div>
 </div>

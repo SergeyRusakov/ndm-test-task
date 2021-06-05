@@ -4,6 +4,8 @@ import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { MainComponent } from './components/main/main.component';
 import { RouterModule } from '@angular/router';
 import { RoutesListComponent } from './components/routes-list/routes-list.component';
+import { SIDENAV_LINKS } from './components/tokens/sidenav-links.token';
+import { sidenavLinksConfig } from './components/config/sidenav-links.config';
 
 @NgModule({
   declarations: [
@@ -17,6 +19,12 @@ import { RoutesListComponent } from './components/routes-list/routes-list.compon
   imports: [
     CommonModule,
     RouterModule
+  ],
+  providers: [
+    {
+      provide: SIDENAV_LINKS,
+      useValue: sidenavLinksConfig,
+    }
   ]
 })
 export class MainModule { }
