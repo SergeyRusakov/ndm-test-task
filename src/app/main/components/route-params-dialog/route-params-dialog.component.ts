@@ -1,7 +1,8 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Route } from '../../types/route.type';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { IPV4_REGEX } from '../../tokens/ipv4-regex.token';
 
 @Component({
   selector: 'app-route-params-dialog',
@@ -16,13 +17,19 @@ export class RouteParamsDialogComponent implements OnInit {
   constructor(
     @Inject(MAT_DIALOG_DATA)
     private matDialogData: Route,
+    @Inject(IPV4_REGEX)
+    private ipv4RegExp: RegExp,
     private formBuilder: FormBuilder,
   ) {
     this.route = matDialogData;
     this.formGroup = this.formBuilder.group({
-      address: this.route.address ,
-      mask: this.route.mask,
-      gateway: this.route.gateway,
+      address: [this.route.address, [
+        Validators.required, Validators.pattern(this.ipv4RegExp)
+      ]],
+      mask: [this.route.mask, Validators.required],
+      gateway: [this.route.gateway, [
+        Validators.required, Validators.pattern(this.ipv4RegExp)
+      ]],
       interface: this.route.interface,
     });
   }

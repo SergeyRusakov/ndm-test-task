@@ -16,6 +16,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
+import { IPV4_REGEX } from './tokens/ipv4-regex.token';
+import { ipv4Regex } from './config/ipv4-regex.config';
 
 @NgModule({
   declarations: [
@@ -44,6 +46,10 @@ import { MatButtonModule } from '@angular/material/button';
     {
       provide: SIDENAV_LINKS,
       useValue: sidenavLinksConfig,
+    },
+    {
+      provide: IPV4_REGEX,
+      useValue: ipv4Regex,
     }
   ]
 })
