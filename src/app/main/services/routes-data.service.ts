@@ -4,6 +4,7 @@ import { Route } from '../types/route.type';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { RoutesHttpService } from './routes-http.service';
 import { finalize } from 'rxjs/operators';
+import { RoutesListSoringOption } from '../types/routes-list-soring-option.type';
 
 @Injectable({
   providedIn: 'root'
@@ -37,4 +38,17 @@ export class RoutesDataService implements DataService<Route, void> {
       )
       .subscribe(response => this.routes$.next(response));
   }
+
+  public sort(options: RoutesListSoringOption): void {
+    const data = this.routes$.getValue();
+    let compareFn;
+    if (options.isDesc) {
+      compareFn = (a: Route, b: Route) => (a[options.column] < b[options.column] ? 1 : -1);
+    } else {
+      compareFn = (a: Route, b: Route) => (a[options.column] > b[options.column] ? 1 : -1);
+    }
+    const sortedData = data.sort(compareFn);
+    this.routes$.next(sortedData);
+  }
+
 }
