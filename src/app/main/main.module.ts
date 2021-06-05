@@ -3,11 +3,13 @@ import { CommonModule } from '@angular/common';
 import { SidenavComponent } from './components/sidenav/sidenav.component';
 import { MainComponent } from './components/main/main.component';
 import { RouterModule } from '@angular/router';
+import { RoutesListComponent } from './components/routes-list/routes-list.component';
 
 @NgModule({
   declarations: [
     SidenavComponent,
-    MainComponent
+    MainComponent,
+    RoutesListComponent
   ],
   exports: [
     MainComponent
