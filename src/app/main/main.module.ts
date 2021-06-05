@@ -18,6 +18,11 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { IPV4_REGEX } from './tokens/ipv4-regex.token';
 import { ipv4Regex } from './config/ipv4-regex.config';
+import { MatSelectModule } from '@angular/material/select';
+import { ROUTER_INTERFACES } from './tokens/route-interfaces.token';
+import { routeInterfaces } from './config/route-interfaces.config';
+import { SUBNET_MASKS } from './tokens/subnet-masks.token';
+import { subnetMasks } from './config/subnet-masks.config';
 
 @NgModule({
   declarations: [
@@ -41,6 +46,7 @@ import { ipv4Regex } from './config/ipv4-regex.config';
     MatInputModule,
     MatDialogModule,
     MatButtonModule,
+    MatSelectModule,
   ],
   providers: [
     {
@@ -50,7 +56,15 @@ import { ipv4Regex } from './config/ipv4-regex.config';
     {
       provide: IPV4_REGEX,
       useValue: ipv4Regex,
+    },
+    {
+      provide: ROUTER_INTERFACES,
+      useValue: routeInterfaces,
+    },
+    {
+      provide: SUBNET_MASKS,
+      useValue: subnetMasks,
     }
-  ]
+  ],
 })
 export class MainModule { }

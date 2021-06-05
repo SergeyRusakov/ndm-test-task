@@ -22,10 +22,13 @@
         Маска подсети
       </div>
       <mat-form-field appearance="outline">
-        <input matInput
-               autocomplete="off"
-               formControlName="mask"
-               class="route-params-dialog__input">
+        <mat-select formControlName="mask"
+                    class="route-params-dialog__select">
+          <mat-option *ngFor="let mask of subnetMasks"
+                      [value]="mask">
+            {{mask}}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
     </div>
 
@@ -46,10 +49,13 @@
         Интерфейс
       </div>
       <mat-form-field appearance="outline">
-        <input matInput
-               autocomplete="off"
-               formControlName="interface"
-               class="route-params-dialog__input">
+        <mat-select formControlName="interface"
+                    class="route-params-dialog__select">
+          <mat-option *ngFor="let routerInterface of routerInterfaces"
+                      [value]="routerInterface">
+            {{routerInterface}}
+          </mat-option>
+        </mat-select>
       </mat-form-field>
     </div>
 
