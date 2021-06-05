@@ -3,6 +3,8 @@ import { RoutesDataService } from '../../services/routes-data.service';
 import { Observable } from 'rxjs';
 import { Route } from '../../types/route.type';
 import { RoutesListSoringOption } from '../../types/routes-list-soring-option.type';
+import { MatDialog } from '@angular/material/dialog';
+import { RouteParamsDialogComponent } from '../route-params-dialog/route-params-dialog.component';
 
 interface RoutesListColumn {
   name: string;
@@ -36,7 +38,8 @@ export class RoutesListComponent implements OnInit {
   public sortedBy?: RoutesListSoringOption;
 
   constructor(
-    private routesDataService: RoutesDataService
+    private routesDataService: RoutesDataService,
+    private matDialog: MatDialog,
   ) {
     this.routes$ = this.routesDataService.connect();
     this.loading$ = this.routesDataService.loading$;
@@ -68,6 +71,10 @@ export class RoutesListComponent implements OnInit {
     if (this.sortedBy) {
       this.routesDataService.sort(this.sortedBy);
     }
+  }
+
+  public handleRowClick(item: Route): void {
+    this.matDialog.open(RouteParamsDialogComponent, {data: item});
   }
 
 }

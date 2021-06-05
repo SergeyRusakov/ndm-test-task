@@ -1,0 +1,75 @@
+<div class="route-params-dialog">
+  <h2 class="route-params-dialog__header">
+    Параметры статического маршрута
+  </h2>
+  <form [formGroup]="formGroup"
+        class="route-params-dialog__form">
+
+    <div class="route-params-dialog__form-field">
+      <div class="route-params-dialog__label">
+        Адрес сети назначения
+      </div>
+      <mat-form-field appearance="outline">
+        <input matInput
+               autocomplete="off"
+               formControlName="address"
+               class="route-params-dialog__input">
+      </mat-form-field>
+    </div>
+
+    <div class="route-params-dialog__form-field">
+      <div class="route-params-dialog__label">
+        Маска подсети
+      </div>
+      <mat-form-field appearance="outline">
+        <input matInput
+               autocomplete="off"
+               formControlName="mask"
+               class="route-params-dialog__input">
+      </mat-form-field>
+    </div>
+
+    <div class="route-params-dialog__form-field">
+      <div class="route-params-dialog__label">
+        Адрес шлюза
+      </div>
+      <mat-form-field appearance="outline">
+        <input matInput
+               autocomplete="off"
+               formControlName="gateway"
+               class="route-params-dialog__input">
+      </mat-form-field>
+    </div>
+
+    <div class="route-params-dialog__form-field">
+      <div class="route-params-dialog__label">
+        Интерфейс
+      </div>
+      <mat-form-field appearance="outline">
+        <input matInput
+               autocomplete="off"
+               formControlName="interface"
+               class="route-params-dialog__input">
+      </mat-form-field>
+    </div>
+
+  </form>
+
+  <div class="route-params-dialog__buttons">
+    <button mat-stroked-button
+            class="route-params-dialog__button"
+            color="primary">
+      Сохранить
+    </button>
+    <button mat-stroked-button
+            class="route-params-dialog__button">
+      Отмена
+    </button>
+    <button mat-stroked-button
+            color="warn"
+            class="route-params-dialog__button route-params-dialog__remove-button">
+      Удалить
+    </button>
+  </div>
+
+</div>

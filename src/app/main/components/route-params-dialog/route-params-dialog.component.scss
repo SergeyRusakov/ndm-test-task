@@ -1,0 +1,33 @@
+.route-params-dialog {
+  &__header {
+    margin-bottom: 20px;
+  }
+
+  &__form-field {
+    display: flex;
+    justify-content: space-between;
+    font-size: 8px;
+  }
+
+  &__input {
+    font-size: 15px;
+  }
+
+  &__label {
+    font-size: 15px;
+  }
+
+  &__buttons {
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  &__button {
+    margin-right: 20px;
+  }
+
+  &__remove-button {
+    margin-left: auto;
+    margin-right: 0;
+  }
+}

@@ -11,13 +11,19 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatIconModule } from '@angular/material/icon';
 import { LoadingOverlayComponent } from './components/loading-overlay/loading-overlay.component';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { RouteParamsDialogComponent } from './components/route-params-dialog/route-params-dialog.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { MatInputModule } from '@angular/material/input';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
     SidenavComponent,
     MainComponent,
     RoutesListComponent,
-    LoadingOverlayComponent
+    LoadingOverlayComponent,
+    RouteParamsDialogComponent
   ],
   exports: [
     MainComponent
@@ -29,6 +35,10 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     HttpClientModule,
     MatIconModule,
     MatProgressSpinnerModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatDialogModule,
+    MatButtonModule,
   ],
   providers: [
     {
