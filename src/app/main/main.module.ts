@@ -9,12 +9,15 @@ import { sidenavLinksConfig } from './config/sidenav-links.config';
 import { MatTableModule } from '@angular/material/table';
 import { HttpClientModule } from '@angular/common/http';
 import { MatIconModule } from '@angular/material/icon';
+import { LoadingOverlayComponent } from './components/loading-overlay/loading-overlay.component';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @NgModule({
   declarations: [
     SidenavComponent,
     MainComponent,
-    RoutesListComponent
+    RoutesListComponent,
+    LoadingOverlayComponent
   ],
   exports: [
     MainComponent
@@ -24,7 +27,8 @@ import { MatIconModule } from '@angular/material/icon';
     RouterModule,
     MatTableModule,
     HttpClientModule,
-    MatIconModule
+    MatIconModule,
+    MatProgressSpinnerModule,
   ],
   providers: [
     {

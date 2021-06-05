@@ -1,4 +1,7 @@
 <div class="routes-list">
+
+  <app-loading-overlay *ngIf="loading$ | async"></app-loading-overlay>
+
   <ng-container *ngIf="!(loading$ | async)">
     <table class="routes-list__table mat-elevation-z8" mat-table [dataSource]="routes$">
 
