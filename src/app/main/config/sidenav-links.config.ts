@@ -1,4 +1,4 @@
-import { SidenavLink } from '../../types/sidenav-link.type';
+import { SidenavLink } from '../types/sidenav-link.type';
 
 export const sidenavLinksConfig: SidenavLink[] = [
   {

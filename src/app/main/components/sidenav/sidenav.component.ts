@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { SIDENAV_LINKS } from '../tokens/sidenav-links.token';
+import { SIDENAV_LINKS } from '../../tokens/sidenav-links.token';
 import { SidenavLink } from '../../types/sidenav-link.type';
 
 @Component({
