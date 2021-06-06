@@ -4,14 +4,13 @@ import { Route } from '../types/route.type';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { RouteForm } from '../types/route-form.type';
 
-interface RoutesResponse {
+interface ApiResponse <T> {
   message: string;
   code: number;
   successful: boolean;
-  payload: {
-    routes: Route[];
-  };
+  payload: T;
 }
 
 @Injectable({
@@ -27,9 +26,19 @@ export class RoutesHttpService implements CrudHttpService<Route, void> {
 
   public fetch(): Observable<Route[]> {
     return this.http
-      .get<RoutesResponse>(this.api)
+      .get<ApiResponse<{routes: Route[]}>>(this.api)
       .pipe(
         map(body => body.payload.routes)
       );
   }
+
+  public delete(uid: string): Observable<void> {
+    return this.http.delete<void>(`${this.api}/${uid}`);
+  }
+
+  public update(route: RouteForm, uuid: string): Observable<string> {
+    return this.http.put<ApiResponse<{uuid: string}>>(`${this.api}/${uuid}`, route)
+      .pipe(map(response => response.payload.uuid));
+  }
+
 }

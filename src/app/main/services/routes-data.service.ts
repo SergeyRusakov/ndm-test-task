@@ -5,6 +5,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { RoutesHttpService } from './routes-http.service';
 import { finalize } from 'rxjs/operators';
 import { RoutesListSoringOption } from '../types/routes-list-soring-option.type';
+import { RouteForm } from '../types/route-form.type';
 
 @Injectable({
   providedIn: 'root'
@@ -49,6 +50,31 @@ export class RoutesDataService implements DataService<Route, void> {
     }
     const sortedData = data.sort(compareFn);
     this.routes$.next(sortedData);
+  }
+
+  public delete(uid: string): void {
+    this._loading$.next(true);
+    this.httpService.delete(uid)
+      .pipe(finalize(() => this._loading$.next(false)))
+      .subscribe(() => {
+        const data = this.routes$.getValue();
+        const updatedData = data.filter(item => item.uuid != uid);
+        this.routes$.next(updatedData);
+      });
+  }
+
+  public updateRoute(route: RouteForm, uuid: string): void {
+    this._loading$.next(true);
+    this.httpService.update(route, uuid)
+      .subscribe(uuid => {
+        const data = this.routes$.getValue();
+        const index = data.findIndex(item => item.uuid === uuid);
+        if (index > -1) {
+          data[index] = { ...data[index], ...route };
+        }
+        this.routes$.next(data);
+        this._loading$.next(false);
+      });
   }
 
 }

@@ -64,14 +64,17 @@
   <div class="route-params-dialog__buttons">
     <button mat-stroked-button
             class="route-params-dialog__button"
+            (click)="handleSubmitClick()"
             color="primary">
       Сохранить
     </button>
     <button mat-stroked-button
+            (click)="handleExitClick()"
             class="route-params-dialog__button">
       Отмена
     </button>
     <button mat-stroked-button
+            (click)="handleDeleteClick()"
             color="warn"
             class="route-params-dialog__button route-params-dialog__remove-button">
       Удалить

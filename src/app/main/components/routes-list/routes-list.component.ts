@@ -74,7 +74,10 @@ export class RoutesListComponent implements OnInit {
   }
 
   public handleRowClick(item: Route): void {
-    this.matDialog.open(RouteParamsDialogComponent, {data: item});
+    this.matDialog.open(RouteParamsDialogComponent, {
+      data: item,
+      autoFocus: false,
+    });
   }
 
 }
