@@ -6,7 +6,7 @@ import { IPV4_REGEX } from '../../tokens/ipv4-regex.token';
 import { ROUTER_INTERFACES } from '../../tokens/route-interfaces.token';
 import { SUBNET_MASKS } from '../../tokens/subnet-masks.token';
 import { RoutesDataService } from '../../services/routes-data.service';
-import { RouteForm } from '../../types/route-form.type';
+import { RouteUpdateForm } from '../../types/route-update-form.type';
 
 @Component({
   selector: 'app-route-params-dialog',
@@ -49,11 +49,11 @@ export class RouteParamsDialogComponent implements OnInit {
 
   public handleSubmitClick(): void {
     if (this.formGroup.valid) {
-      const changedValues: RouteForm = {}
+      const changedValues: RouteUpdateForm = {}
       Object.keys(this.formGroup.value)
         .forEach(key => {
           if (this.route[key as keyof Route] !== this.formGroup.value[key]) {
-            changedValues[key as keyof RouteForm] = this.formGroup.value[key];
+            changedValues[key as keyof RouteUpdateForm] = this.formGroup.value[key];
           }
         });
       if (Object.keys(changedValues).length) {

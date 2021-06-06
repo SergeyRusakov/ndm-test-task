@@ -1,4 +1,4 @@
-export interface RouteForm {
+export interface RouteUpdateForm {
   address?: string;
   gateway?: string;
   mask?: string;

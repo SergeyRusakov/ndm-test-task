@@ -5,8 +5,9 @@ import { BehaviorSubject, Observable, of } from 'rxjs';
 import { RoutesHttpService } from './routes-http.service';
 import { catchError, filter, finalize } from 'rxjs/operators';
 import { RoutesListSoringOption } from '../types/routes-list-soring-option.type';
-import { RouteForm } from '../types/route-form.type';
+import { RouteUpdateForm } from '../types/route-update-form.type';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { RouteCreateForm } from '../types/route-create-form.type';
 
 @Injectable({
   providedIn: 'root'
@@ -65,28 +66,49 @@ export class RoutesDataService implements DataService<Route, void> {
       });
   }
 
-  public updateRoute(route: RouteForm, uuid: string): void {
+  public create(route: RouteCreateForm): void {
+    this.httpService.create(route)
+      .pipe(
+        catchError((text: string) => {
+          this.showMessage(text);
+          return of(null);
+        }),
+        filter(value => !!value)
+      )
+      .subscribe(uuid => {
+        if (uuid) {
+          const data = this.routes$.getValue();
+          data.push({ uuid, ...route });
+          this.routes$.next(data);
+          this.showMessage('Route created');
+        }
+      });
+  }
+
+  public updateRoute(route: RouteUpdateForm, uuid: string): void {
     this._loading$.next(true);
     this.httpService.update(route, uuid)
       .pipe(
         finalize(() => this._loading$.next(false)),
         catchError((text: string) => {
-          this.processError(text);
+          this.showMessage(text);
           return of(null);
         }),
         filter(value => !!value)
       )
-      .subscribe(() => {
-        const data = this.routes$.getValue();
-        const index = data.findIndex(item => item.uuid === uuid);
-        if (index > -1) {
-          data[index] = { ...data[index], ...route };
-        }
-        this.routes$.next(data);
-      });
+      .subscribe(() => this.updateLocal(route, uuid));
   }
 
-  private processError(text: string): void {
+  private updateLocal(route: RouteUpdateForm, uuid: string): void {
+    const data = this.routes$.getValue();
+    const index = data.findIndex(item => item.uuid === uuid);
+    if (index > -1) {
+      data[index] = { ...data[index], ...route };
+    }
+    this.routes$.next(data);
+  }
+
+  private showMessage(text: string): void {
     this.snackBar.open(text, undefined, { duration: 3000 });
   }
 

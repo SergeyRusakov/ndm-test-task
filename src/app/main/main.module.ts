@@ -24,6 +24,7 @@ import { routeInterfaces } from './config/route-interfaces.config';
 import { SUBNET_MASKS } from './tokens/subnet-masks.token';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { subnetMasks } from './config/subnet-masks.config';
+import { RouteCreationFormComponent } from './components/route-creation-form/route-creation-form.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { subnetMasks } from './config/subnet-masks.config';
     MainComponent,
     RoutesListComponent,
     LoadingOverlayComponent,
-    RouteParamsDialogComponent
+    RouteParamsDialogComponent,
+    RouteCreationFormComponent
   ],
   exports: [
     MainComponent

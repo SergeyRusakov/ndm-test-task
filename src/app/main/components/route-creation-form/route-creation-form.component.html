@@ -1,0 +1,68 @@
+<div class="route-creation-form">
+  <form [formGroup]="formGroup"
+        class="route-creation-form__form mat-elevation-z8">
+
+    <div class="route-creation-form__form-field">
+      <div class="route-creation-form__label">
+        Адрес сети назначения
+      </div>
+      <mat-form-field appearance="outline">
+        <input matInput
+               autocomplete="off"
+               formControlName="address"
+               class="route-creation-form__input">
+      </mat-form-field>
+    </div>
+
+    <div class="route-creation-form__form-field">
+      <div class="route-creation-form__label">
+        Маска подсети
+      </div>
+      <mat-form-field appearance="outline">
+        <mat-select formControlName="mask"
+                    class="route-creation-form__select">
+          <mat-option *ngFor="let mask of subnetMasks"
+                      [value]="mask">
+            {{mask}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="route-creation-form__form-field">
+      <div class="route-creation-form__label">
+        Адрес шлюза
+      </div>
+      <mat-form-field appearance="outline">
+        <input matInput
+               autocomplete="off"
+               formControlName="gateway"
+               class="route-creation-form__input">
+      </mat-form-field>
+    </div>
+
+    <div class="route-creation-form__form-field">
+      <div class="route-creation-form__label">
+        Интерфейс
+      </div>
+      <mat-form-field appearance="outline">
+        <mat-select formControlName="interface"
+                    class="route-creation-form__select">
+          <mat-option *ngFor="let routerInterface of routerInterfaces"
+                      [value]="routerInterface">
+            {{routerInterface}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <button mat-stroked-button
+            class="route-creation-form__submit"
+            (click)="handleSubmitClick()"
+            color="primary">
+      Создать
+    </button>
+  </form>
+
+</div>
+
