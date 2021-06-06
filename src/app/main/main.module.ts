@@ -22,6 +22,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { ROUTER_INTERFACES } from './tokens/route-interfaces.token';
 import { routeInterfaces } from './config/route-interfaces.config';
 import { SUBNET_MASKS } from './tokens/subnet-masks.token';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { subnetMasks } from './config/subnet-masks.config';
 
 @NgModule({
@@ -47,6 +48,7 @@ import { subnetMasks } from './config/subnet-masks.config';
     MatDialogModule,
     MatButtonModule,
     MatSelectModule,
+    MatSnackBarModule,
   ],
   providers: [
     {
@@ -67,4 +69,5 @@ import { subnetMasks } from './config/subnet-masks.config';
     }
   ],
 })
-export class MainModule { }
+export class MainModule {
+}

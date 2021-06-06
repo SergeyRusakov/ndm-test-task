@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { DataService } from '../interfaces/data-service.interface';
 import { Route } from '../types/route.type';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { RoutesHttpService } from './routes-http.service';
-import { finalize } from 'rxjs/operators';
+import { catchError, filter, finalize } from 'rxjs/operators';
 import { RoutesListSoringOption } from '../types/routes-list-soring-option.type';
 import { RouteForm } from '../types/route-form.type';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,7 @@ export class RoutesDataService implements DataService<Route, void> {
 
   constructor(
     private httpService: RoutesHttpService,
+    private snackBar: MatSnackBar,
   ) {
     this._loading$ = new BehaviorSubject<boolean>(false);
     this.routes$ = new BehaviorSubject<Route[]>([]);
@@ -66,15 +68,26 @@ export class RoutesDataService implements DataService<Route, void> {
   public updateRoute(route: RouteForm, uuid: string): void {
     this._loading$.next(true);
     this.httpService.update(route, uuid)
-      .subscribe(uuid => {
+      .pipe(
+        finalize(() => this._loading$.next(false)),
+        catchError((text: string) => {
+          this.processError(text);
+          return of(null);
+        }),
+        filter(value => !!value)
+      )
+      .subscribe(() => {
         const data = this.routes$.getValue();
         const index = data.findIndex(item => item.uuid === uuid);
         if (index > -1) {
           data[index] = { ...data[index], ...route };
         }
         this.routes$.next(data);
-        this._loading$.next(false);
       });
+  }
+
+  private processError(text: string): void {
+    this.snackBar.open(text, undefined, { duration: 3000 });
   }
 
 }

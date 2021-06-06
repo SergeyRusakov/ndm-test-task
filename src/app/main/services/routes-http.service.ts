@@ -3,7 +3,7 @@ import { CrudHttpService } from '../interfaces/crud-http-service.interface';
 import { Route } from '../types/route.type';
 import { Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { RouteForm } from '../types/route-form.type';
 
 interface ApiResponse <T> {
@@ -38,7 +38,14 @@ export class RoutesHttpService implements CrudHttpService<Route, void> {
 
   public update(route: RouteForm, uuid: string): Observable<string> {
     return this.http.put<ApiResponse<{uuid: string}>>(`${this.api}/${uuid}`, route)
-      .pipe(map(response => response.payload.uuid));
+      .pipe(
+        tap(response => {
+          if (!response.successful) {
+            throw Error(response.message);
+          }
+        }),
+        map(response => response.payload.uuid),
+      );
   }
 
 }
